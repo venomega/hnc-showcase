@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Showcase - Aplicación</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background: #0f0f11;
+      color: #e1e1e6;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      padding: 48px 24px 32px;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    header p {
+      color: #888;
+      margin-top: 8px;
+      font-size: 1.05rem;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 40px;
+    }
+
+    .tabs button {
+      background: #1c1c1f;
+      border: 1px solid #2a2a2e;
+      color: #888;
+      padding: 10px 28px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .tabs button.active {
+      background: #6366f1;
+      border-color: #6366f1;
+      color: #fff;
+    }
+
+    .tabs button:not(.active):hover {
+      border-color: #6366f1;
+      color: #e1e1e6;
+    }
+
+    .view {
+      display: none;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    .view.active { display: block; }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid #2a2a2e;
+      box-shadow: 0 8px 32px rgba(0,0,0,.4);
+      transition: transform .25s;
+      cursor: pointer;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.02);
+    }
+
+    .gallery.mobile {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .gallery.mobile img {
+      max-width: 280px;
+      margin: 0 auto;
+    }
+
+    /* lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.9);
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 40px;
+    }
+
+    .lightbox.open { display: flex; }
+
+    .lightbox img {
+      max-width: 100%;
+      max-height: 90vh;
+      border-radius: 8px;
+    }
+
+    .lightbox .close {
+      position: absolute;
+      top: 20px;
+      right: 32px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.5rem; }
+      .gallery { grid-template-columns: 1fr; }
+      .gallery.mobile { grid-template-columns: 1fr; }
+      .gallery.mobile img { max-width: 220px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Visor de Eventos</h1>
+    <p>Visor de eventos de hotel. Explora la lista de actividades próximas, el calendario mensual con historial de eventos por día, y la vista de salones para filtrar eventos por espacio de arrendamiento.</p>
+  </header>
+
+  <div class="tabs">
+    <button class="active" data-view="desktop">Desktop</button>
+    <button data-view="mobile">Mobile</button>
+  </div>
+
+  <div id="view-desktop" class="view active">
+    <div class="gallery">
+      <img src="desktop/Captura%20de%20pantalla%202026-05-16%20a%20la(s)%2011.37.48%E2%80%AFa.m..png" alt="Desktop 1" />
+      <img src="desktop/Captura%20de%20pantalla%202026-05-16%20a%20la(s)%2011.38.05%E2%80%AFa.m..png" alt="Desktop 2" />
+      <img src="desktop/Captura%20de%20pantalla%202026-05-16%20a%20la(s)%2011.38.10%E2%80%AFa.m..png" alt="Desktop 3" />
+      <img src="desktop/Captura%20de%20pantalla%202026-05-16%20a%20la(s)%2011.38.18%E2%80%AFa.m..png" alt="Desktop 4" />
+      <img src="desktop/Captura%20de%20pantalla%202026-05-16%20a%20la(s)%2011.38.23%E2%80%AFa.m..png" alt="Desktop 5" />
+      <img src="desktop/Captura%20de%20pantalla%202026-05-16%20a%20la(s)%2011.38.34%E2%80%AFa.m..png" alt="Desktop 6" />
+      <img src="desktop/Captura%20de%20pantalla%202026-05-16%20a%20la(s)%2011.38.45%E2%80%AFa.m..png" alt="Desktop 7" />
+    </div>
+  </div>
+
+  <div id="view-mobile" class="view">
+    <div class="gallery mobile">
+      <img src="mobile/Captura%20de%20pantalla%202026-05-16%20a%20la(s)%2011.39.55%E2%80%AFa.m..png" alt="Mobile 1" />
+      <img src="mobile/Captura%20de%20pantalla%202026-05-16%20a%20la(s)%2011.40.41%E2%80%AFa.m..png" alt="Mobile 2" />
+      <img src="mobile/Captura%20de%20pantalla%202026-05-16%20a%20la(s)%2011.40.59%E2%80%AFa.m..png" alt="Mobile 3" />
+      <img src="mobile/Captura%20de%20pantalla%202026-05-16%20a%20la(s)%2011.41.03%E2%80%AFa.m..png" alt="Mobile 4" />
+      <img src="mobile/Captura%20de%20pantalla%202026-05-16%20a%20la(s)%2011.41.09%E2%80%AFa.m..png" alt="Mobile 5" />
+      <img src="mobile/Captura%20de%20pantalla%202026-05-16%20a%20la(s)%2011.41.14%E2%80%AFa.m..png" alt="Mobile 6" />
+      <img src="mobile/Captura%20de%20pantalla%202026-05-16%20a%20la(s)%2011.41.20%E2%80%AFa.m..png" alt="Mobile 7" />
+    </div>
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <button class="close">&times;</button>
+    <img src="" alt="Preview" />
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll('.tabs button');
+    const views = { desktop: document.getElementById('view-desktop'), mobile: document.getElementById('view-mobile') };
+
+    tabs.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabs.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        Object.keys(views).forEach(k => views[k].classList.toggle('active', k === btn.dataset.view));
+      });
+    });
+
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = lightbox.querySelector('img');
+
+    document.querySelectorAll('.gallery img').forEach(img => {
+      img.addEventListener('click', () => {
+        lbImg.src = img.src;
+        lightbox.classList.add('open');
+      });
+    });
+
+    lightbox.querySelector('.close').addEventListener('click', () => lightbox.classList.remove('open'));
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.classList.remove('open'); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') lightbox.classList.remove('open'); });
+  </script>
+
+</body>
+</html>
